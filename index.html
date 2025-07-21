@@ -3,50 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Travel Guide</title>
+  <title>Travel Recommendation Website</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    nav ul { list-style: none; margin: 0; padding: 0; display: flex; background: #333; }
-    nav li { margin: 0; }
-    nav a { display: block; padding: 14px 20px; color: white; text-decoration: none; }
-    nav a:hover { background: #575757; }
-    section { padding: 20px; }
-    img { width: 300px; margin: 10px; border-radius: 8px; }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; scroll-behavior: smooth; }
+    nav ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; background:#333; }
+    nav li { margin:0; }
+    nav a, nav input, nav button {
+      display:block; padding:14px 20px; color:white; text-decoration:none; border:none; background:none;
+    }
+    nav input { color:black; background:white; border-radius:4px; padding:8px; margin:8px; }
+    nav button { background:#555; color:white; border-radius:4px; margin:8px; }
+    nav a:hover, nav button:hover { background:#575757; cursor:pointer; }
+    section { padding:40px 20px; max-width:1000px; margin:auto; }
+    h1,h2 { color:#333; }
+    img { width:300px; max-width:90%; margin:10px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.2); }
+    .team-member { margin:15px 0; }
+    form { max-width:400px; background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.2);}
+    input, textarea { width:100%; padding:10px; margin:10px 0; border-radius:4px; border:1px solid #ccc; }
+    button.submit { padding:10px 15px; background:#333; color:white; border:none; border-radius:4px; cursor:pointer; }
+    button.submit:hover { background:#555; }
+    footer { text-align:center; padding:20px; background:#333; color:white; }
   </style>
 </head>
 <body>
+
   <nav>
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+      <li><input type="text" id="searchInput" placeholder="Search beaches, temples, countries"></li>
+      <li><button onclick="performSearch()">Search</button></li>
+      <li><button onclick="clearResults()">Clear</button></li>
     </ul>
   </nav>
 
-  <section>
+  <!-- Home Section -->
+  <section id="home">
     <h1>Welcome to Our Travel Guide</h1>
-    <p>Discover beautiful beaches, amazing temples, and more around the world!</p>
+    <p>Discover beautiful beaches, cultural temples, and fascinating countries around the world! Use the search bar in the navigation to explore recommendations.</p>
+
+    <h2>Featured Beaches</h2>
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60" alt="Beach 1">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60&sig=2" alt="Beach 2">
+
+    <h2>Featured Temples</h2>
+    <img src="https://images.unsplash.com/photo-1601041320738-9a0a3a18f3cc?auto=format&fit=crop&w=800&q=60" alt="Temple 1">
+    <img src="https://images.unsplash.com/photo-1588940065446-04db6ac68ec1?auto=format&fit=crop&w=800&q=60" alt="Temple 2">
+
+    <h2>Featured Countries</h2>
+    <img src="https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=800&q=60" alt="Country 1">
+    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=60" alt="Country 2">
+
+    <div id="results">
+      <!-- Dynamic search results will appear here -->
+    </div>
   </section>
 
-  <section>
-    <h2>Beach Recommendation</h2>
-    <p>Check out these stunning beaches:</p>
-    <img src="beach1.jpg" alt="Beach 1">
-    <img src="beach2.jpg" alt="Beach 2">
+  <!-- About Section -->
+  <section id="about">
+    <h1>About Us</h1>
+    <p>We are passionate travelers dedicated to helping you discover the most beautiful destinations worldwide. From serene beaches to historic temples, we curate the best recommendations for your next adventure.</p>
+    <h2>Meet Our Team</h2>
+    <div class="team-member">
+      <h3>Jane Doe - Founder</h3>
+      <p>Jane has traveled to over 50 countries and loves sharing hidden gems.</p>
+    </div>
+    <div class="team-member">
+      <h3>John Smith - Travel Specialist</h3>
+      <p>John specializes in beach destinations and unique cultural experiences.</p>
+    </div>
   </section>
 
-  <section>
-    <h2>Temple Recommendation</h2>
-    <p>Explore these beautiful temples:</p>
-    <img src="temple1.jpg" alt="Temple 1">
-    <img src="temple2.jpg" alt="Temple 2">
+  <!-- Contact Section -->
+  <section id="contact">
+    <h1>Contact Us</h1>
+    <p>Have questions or need travel advice? Send us a message below:</p>
+    <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+      <button type="submit" class="submit">Send</button>
+    </form>
   </section>
 
-  <section>
-    <h2>Country Recommendation: Japan</h2>
-    <p>Discover these amazing spots in Japan:</p>
-    <img src="japan1.jpg" alt="Japan Spot 1">
-    <img src="japan2.jpg" alt="Japan Spot 2">
-  </section>
+  <footer>
+    <p>© 2025 Travel Guide. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const resultsDiv = document.getElementById('results');
+
+    function performSearch() {
+      const term = document.getElementById('searchInput').value.toLowerCase();
+      resultsDiv.innerHTML = ''; // clear old results
+
+      if (term.includes('beach')) {
+        resultsDiv.innerHTML += `
+          <h2>Beach Recommendations</h2>
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60" alt="Beach 1">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60&sig=2" alt="Beach 2">
+        `;
+      }
+      if (term.includes('temple')) {
+        resultsDiv.innerHTML += `
+          <h2>Temple Recommendations</h2>
+          <img src="https://images.unsplash.com/photo-1601041320738-9a0a3a18f3cc?auto=format&fit=crop&w=800&q=60" alt="Temple 1">
+          <img src="https://images.unsplash.com/photo-1588940065446-04db6ac68ec1?auto=format&fit=crop&w=800&q=60" alt="Temple 2">
+        `;
+      }
+      if (term.includes('country')) {
+        resultsDiv.innerHTML += `
+          <h2>Country Recommendations</h2>
+          <img src="https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=800&q=60" alt="Country 1">
+          <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=60" alt="Country 2">
+        `;
+      }
+
+      if (resultsDiv.innerHTML.trim() === '') {
+        resultsDiv.innerHTML = '<p>No results found. Try searching for "beach", "temple", or "country".</p>';
+      }
+    }
+
+    function clearResults() {
+      document.getElementById('searchInput').value = '';
+      resultsDiv.innerHTML = '';
+    }
+  </script>
 </body>
 </html>
